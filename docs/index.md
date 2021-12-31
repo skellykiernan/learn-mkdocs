@@ -1,6 +1,6 @@
 # Skel learns mkdocs
 
-Just experimenting with mkdocs to learn about it 
+Just experimenting with mkdocs to learn about it, plus experiment 
 
 ## To Be Done
 
