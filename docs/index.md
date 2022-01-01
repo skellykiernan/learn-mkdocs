@@ -11,13 +11,7 @@ Just experimenting with mkdocs to learn about it, plus experiment
 
 ## Tables  
 
-### Simple Table
-
-| column 1       | col 2        | col 3        |
-| -------------- | ------------ | ------------ |
-| This is a test | for          | a table      |
-| row 2, col 1   | row 2, col 2 | row 2, col3  |
-| row 2, col 1   | row 2, col 2 | row 3, col 3 |
+  - [Example of simple table](tables/#simple-table)
 
 
 ## References 
