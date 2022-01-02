@@ -4,7 +4,7 @@ Just experimenting with mkdocs to learn about it, plus experiment
 
 ## To Be Done
 
-  - [x] Create a simple table
+  - [x] ~~Create a simple table~~
   - [] Move this to separate page 
   - [] Create a simple table with links to internal anchors
   - [] Create a simple table with links to external anchors

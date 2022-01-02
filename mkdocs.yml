@@ -4,6 +4,7 @@ site_url: https://example.com/
 nav: 
     - Introduction: 'index.md'
     - Examples: 'tables.md'
+    - Code Example: 'code/example_c.html'
 
 theme:
     name: readthedocs
