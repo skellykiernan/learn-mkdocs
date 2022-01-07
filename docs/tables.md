@@ -14,5 +14,5 @@
 
 | Description      | file:line number                                                    |
 |------------------|---------------------------------------------------------------------|
-| main function    | <a href="../code/example_c.html#example_c_line_2">example.c:2</a>   |
-| sum_calcultation  | <a href="../code/example_c.html#example_c_line_10">example.c:10</a> |
+| main function    | <a href="../code/example_c.html#example-c-line-2">example.c:2</a>   |
+| sum_calcultation  | <a href="../code/example_c.html#example-c-line-10">example.c:10</a> |
