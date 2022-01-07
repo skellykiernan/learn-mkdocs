@@ -11,8 +11,8 @@ Just experimenting with mkdocs to learn about it, plus experiment
 
 ## Tables  
 
-  - [Example of simple table](tables/#simple-table)
-
+  - [simple table](tables/#simple-table)
+  - [table with code links](tables/#table-with-example-c-code-link)
 
 ## References 
 
