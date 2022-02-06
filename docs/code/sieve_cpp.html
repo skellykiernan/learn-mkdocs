@@ -1,0 +1,152 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+   11
+   12
+   13
+   14
+   15
+   16
+   17
+   18
+   19
+   20
+   21
+   22
+   23
+   24
+   25
+   26
+   27
+   28
+   29
+   30
+   31
+   32
+   33
+   34
+   35
+   36
+   37
+   38
+   39
+   40
+   41
+   42
+   43
+   44
+   45
+   46
+   47
+   48
+   49
+   50
+   51
+   52
+   53
+   54
+   55
+   56
+   57
+   58
+   59
+   60
+   61
+   62
+   63
+   64
+   65
+   66
+   67
+   68
+   69
+   70
+   71
+   72
+   73
+   74
+   75
+   76</pre></td><td><pre style="margin: 0; line-height: 125%"><a id="sieve-c-line-0001"></a><span style="color: #888888">// Note: using http://hilite.me/ to generate an initial  </span>
+   <a id="sieve-c-line-0002"></a><span style="color: #888888">//  </span>
+   <a id="sieve-c-line-0003"></a><span style="color: #888888">// This code  taken from https://www.geeksforgeeks.org/sieve-eratosthenes-0n-time-complexity/ </span>
+   <a id="sieve-c-line-0004"></a><span style="color: #888888">// then manually modify the code to make it longer</span>
+   <a id="sieve-c-line-0005"></a><span style="color: #888888">//   - this is an example</span>
+   <a id="sieve-c-line-0006"></a><span style="color: #888888">// The HTML is manually edited to add html anchors to each line with the filename part of the anchor tag</span>
+   <a id="sieve-c-line-0007"></a>
+   <a id="sieve-c-line-0008"></a>
+   <a id="sieve-c-line-0009"></a><span style="color: #888888">// C++ program to generate all prime numbers</span>
+   <a id="sieve-c-line-0010"></a><span style="color: #888888">// less than N in O(N)</span>
+   <a id="sieve-c-line-0011"></a><span style="color: #557799">#include&lt;bits/stdc++.h&gt;</span>
+   <a id="sieve-c-line-0012"></a>using namespace std;
+   <a id="sieve-c-line-0013"></a><span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> MAX_SIZE <span style="color: #000000">=</span> <span style="color: #0000DD; font-weight: bold">1000001</span>;
+   <a id="sieve-c-line-0014"></a>
+   <a id="sieve-c-line-0015"></a><span style="color: #888888">// isPrime[] : isPrime[i] is true if number is prime</span>
+   <a id="sieve-c-line-0016"></a><span style="color: #888888">// prime[] : stores all prime number less than N</span>
+   <a id="sieve-c-line-0017"></a><span style="color: #888888">// SPF[] that store smallest prime factor of number</span>
+   <a id="sieve-c-line-0018"></a><span style="color: #888888">// [for Exp : smallest prime factor of &#39;8&#39; and &#39;16&#39;</span>
+   <a id="sieve-c-line-0019"></a><span style="color: #888888">// is &#39;2&#39; so we put SPF[8] = 2 , SPF[16] = 2 ]</span>
+   <a id="sieve-c-line-0020"></a>vector<span style="color: #000000">&lt;</span><span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #000000">&gt;</span>isprime(MAX_SIZE , <span style="color: #007020">true</span>);
+   <a id="sieve-c-line-0021"></a>vector<span style="color: #000000">&lt;</span><span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #000000">&gt;</span>prime;
+   <a id="sieve-c-line-0022"></a>vector<span style="color: #000000">&lt;</span><span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #000000">&gt;</span>SPF(MAX_SIZE);
+   <a id="sieve-c-line-0023"></a>
+   <a id="sieve-c-line-0024"></a><span style="color: #888888">// function generate all prime number less then N in O(n)</span>
+   <a id="sieve-c-line-0025"></a><span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">manipulated_seive</span>(<span style="color: #333399; font-weight: bold">int</span> N)
+   <a id="sieve-c-line-0026"></a>{
+   <a id="sieve-c-line-0027"></a>    <span style="color: #888888">// 0 and 1 are not prime</span>
+   <a id="sieve-c-line-0028"></a>    isprime[<span style="color: #0000DD; font-weight: bold">0</span>] <span style="color: #000000">=</span> isprime[<span style="color: #0000DD; font-weight: bold">1</span>] <span style="color: #000000">=</span> <span style="color: #007020">false</span> ;
+   <a id="sieve-c-line-0029"></a>
+   <a id="sieve-c-line-0010"></a>    <span style="color: #888888">// Fill rest of the entries</span>
+   <a id="sieve-c-line-0021"></a>    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span> i<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">2</span>; i<span style="color: #000000">&lt;</span>N ; i<span style="color: #000000">++</span>)
+   <a id="sieve-c-line-0022"></a>    {
+   <a id="sieve-c-line-0023"></a>        <span style="color: #888888">// If isPrime[i] == True then i is</span>
+   <a id="sieve-c-line-0024"></a>        <span style="color: #888888">// prime number</span>
+   <a id="sieve-c-line-0025"></a>        <span style="color: #008800; font-weight: bold">if</span> (isprime[i])
+   <a id="sieve-c-line-0026"></a>        {
+   <a id="sieve-c-line-0027"></a>            <span style="color: #888888">// put i into prime[] vector</span>
+   <a id="sieve-c-line-0028"></a>            prime.push_back(i);
+   <a id="sieve-c-line-0029"></a>
+   <a id="sieve-c-line-0020"></a>            <span style="color: #888888">// A prime number is its own smallest</span>
+   <a id="sieve-c-line-0031"></a>            <span style="color: #888888">// prime factor</span>
+   <a id="sieve-c-line-0032"></a>            SPF[i] <span style="color: #000000">=</span> i;
+   <a id="sieve-c-line-0033"></a>        }
+   <a id="sieve-c-line-0034"></a>
+   <a id="sieve-c-line-0035"></a>        <span style="color: #888888">// Remove all multiples of i*prime[j] which are</span>
+   <a id="sieve-c-line-0036"></a>        <span style="color: #888888">// not prime by making isPrime[i*prime[j]] = false</span>
+   <a id="sieve-c-line-0037"></a>        <span style="color: #888888">// and put smallest prime factor of i*Prime[j] as prime[j]</span>
+   <a id="sieve-c-line-0038"></a>        <span style="color: #888888">// [ for exp :let i = 5 , j = 0 , prime[j] = 2 [ i*prime[j] = 10 ]</span>
+   <a id="sieve-c-line-0039"></a>        <span style="color: #888888">// so smallest prime factor of &#39;10&#39; is &#39;2&#39; that is prime[j] ]</span>
+   <a id="sieve-c-line-0030"></a>        <span style="color: #888888">// this loop run only one time for number which are not prime</span>
+   <a id="sieve-c-line-0041"></a>        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span> j<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">0</span>;
+   <a id="sieve-c-line-0042"></a>            j <span style="color: #000000">&lt;</span> (<span style="color: #333399; font-weight: bold">int</span>)prime.size() <span style="color: #000000">&amp;&amp;</span>
+   <a id="sieve-c-line-0043"></a>            i<span style="color: #000000">*</span>prime[j] <span style="color: #000000">&lt;</span> N <span style="color: #000000">&amp;&amp;</span> prime[j] <span style="color: #000000">&lt;=</span> SPF[i];
+   <a id="sieve-c-line-0044"></a>            j<span style="color: #000000">++</span>)
+   <a id="sieve-c-line-0045"></a>        {
+   <a id="sieve-c-line-0046"></a>            isprime[i<span style="color: #000000">*</span>prime[j]]<span style="color: #000000">=</span><span style="color: #007020">false</span>;
+   <a id="sieve-c-line-0047"></a>
+   <a id="sieve-c-line-0048"></a>            <span style="color: #888888">// put smallest prime factor of i*prime[j]</span>
+   <a id="sieve-c-line-0049"></a>            SPF[i<span style="color: #000000">*</span>prime[j]] <span style="color: #000000">=</span> prime[j] ;
+   <a id="sieve-c-line-0050"></a>        }
+   <a id="sieve-c-line-0051"></a>    }
+   <a id="sieve-c-line-0052"></a>}
+   <a id="sieve-c-line-0053"></a>
+   <a id="sieve-c-line-0054"></a><span style="color: #888888">// driver program to test above function</span>
+   <a id="sieve-c-line-0055"></a><span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>()
+   <a id="sieve-c-line-0056"></a>{
+   <a id="sieve-c-line-0057"></a>    <span style="color: #333399; font-weight: bold">int</span> N <span style="color: #000000">=</span> <span style="color: #0000DD; font-weight: bold">13</span> ; <span style="color: #888888">// Must be less than MAX_SIZE</span>
+   <a id="sieve-c-line-0058"></a>
+   <a id="sieve-c-line-0059"></a>    manipulated_seive(N);
+   <a id="sieve-c-line-0060"></a>
+   <a id="sieve-c-line-0061"></a>    <span style="color: #888888">// print all prime number less then N</span>
+   <a id="sieve-c-line-0062"></a>    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">0</span>; i<span style="color: #000000">&lt;</span>prime.size() <span style="color: #000000">&amp;&amp;</span> prime[i] <span style="color: #000000">&lt;=</span> N ; i<span style="color: #000000">++</span>)
+   <a id="sieve-c-line-0063"></a>        cout <span style="color: #000000">&lt;&lt;</span> prime[i] <span style="color: #000000">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot; &quot;</span>;
+   <a id="sieve-c-line-0064"></a>
+   <a id="sieve-c-line-0065"></a>    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+   <a id="sieve-c-line-0066"></a>}
+   </pre></td></tr></table></div>
