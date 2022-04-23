@@ -102,51 +102,51 @@
    <a id="sieve-c-line-0027"></a>    <span style="color: #888888">// 0 and 1 are not prime</span>
    <a id="sieve-c-line-0028"></a>    isprime[<span style="color: #0000DD; font-weight: bold">0</span>] <span style="color: #000000">=</span> isprime[<span style="color: #0000DD; font-weight: bold">1</span>] <span style="color: #000000">=</span> <span style="color: #007020">false</span> ;
    <a id="sieve-c-line-0029"></a>
-   <a id="sieve-c-line-0010"></a>    <span style="color: #888888">// Fill rest of the entries</span>
-   <a id="sieve-c-line-0021"></a>    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span> i<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">2</span>; i<span style="color: #000000">&lt;</span>N ; i<span style="color: #000000">++</span>)
-   <a id="sieve-c-line-0022"></a>    {
-   <a id="sieve-c-line-0023"></a>        <span style="color: #888888">// If isPrime[i] == True then i is</span>
-   <a id="sieve-c-line-0024"></a>        <span style="color: #888888">// prime number</span>
-   <a id="sieve-c-line-0025"></a>        <span style="color: #008800; font-weight: bold">if</span> (isprime[i])
-   <a id="sieve-c-line-0026"></a>        {
-   <a id="sieve-c-line-0027"></a>            <span style="color: #888888">// put i into prime[] vector</span>
-   <a id="sieve-c-line-0028"></a>            prime.push_back(i);
-   <a id="sieve-c-line-0029"></a>
-   <a id="sieve-c-line-0020"></a>            <span style="color: #888888">// A prime number is its own smallest</span>
-   <a id="sieve-c-line-0031"></a>            <span style="color: #888888">// prime factor</span>
-   <a id="sieve-c-line-0032"></a>            SPF[i] <span style="color: #000000">=</span> i;
-   <a id="sieve-c-line-0033"></a>        }
-   <a id="sieve-c-line-0034"></a>
-   <a id="sieve-c-line-0035"></a>        <span style="color: #888888">// Remove all multiples of i*prime[j] which are</span>
-   <a id="sieve-c-line-0036"></a>        <span style="color: #888888">// not prime by making isPrime[i*prime[j]] = false</span>
-   <a id="sieve-c-line-0037"></a>        <span style="color: #888888">// and put smallest prime factor of i*Prime[j] as prime[j]</span>
-   <a id="sieve-c-line-0038"></a>        <span style="color: #888888">// [ for exp :let i = 5 , j = 0 , prime[j] = 2 [ i*prime[j] = 10 ]</span>
-   <a id="sieve-c-line-0039"></a>        <span style="color: #888888">// so smallest prime factor of &#39;10&#39; is &#39;2&#39; that is prime[j] ]</span>
-   <a id="sieve-c-line-0030"></a>        <span style="color: #888888">// this loop run only one time for number which are not prime</span>
-   <a id="sieve-c-line-0041"></a>        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span> j<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">0</span>;
-   <a id="sieve-c-line-0042"></a>            j <span style="color: #000000">&lt;</span> (<span style="color: #333399; font-weight: bold">int</span>)prime.size() <span style="color: #000000">&amp;&amp;</span>
-   <a id="sieve-c-line-0043"></a>            i<span style="color: #000000">*</span>prime[j] <span style="color: #000000">&lt;</span> N <span style="color: #000000">&amp;&amp;</span> prime[j] <span style="color: #000000">&lt;=</span> SPF[i];
-   <a id="sieve-c-line-0044"></a>            j<span style="color: #000000">++</span>)
-   <a id="sieve-c-line-0045"></a>        {
-   <a id="sieve-c-line-0046"></a>            isprime[i<span style="color: #000000">*</span>prime[j]]<span style="color: #000000">=</span><span style="color: #007020">false</span>;
-   <a id="sieve-c-line-0047"></a>
-   <a id="sieve-c-line-0048"></a>            <span style="color: #888888">// put smallest prime factor of i*prime[j]</span>
-   <a id="sieve-c-line-0049"></a>            SPF[i<span style="color: #000000">*</span>prime[j]] <span style="color: #000000">=</span> prime[j] ;
-   <a id="sieve-c-line-0050"></a>        }
-   <a id="sieve-c-line-0051"></a>    }
-   <a id="sieve-c-line-0052"></a>}
-   <a id="sieve-c-line-0053"></a>
-   <a id="sieve-c-line-0054"></a><span style="color: #888888">// driver program to test above function</span>
-   <a id="sieve-c-line-0055"></a><span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>()
-   <a id="sieve-c-line-0056"></a>{
-   <a id="sieve-c-line-0057"></a>    <span style="color: #333399; font-weight: bold">int</span> N <span style="color: #000000">=</span> <span style="color: #0000DD; font-weight: bold">13</span> ; <span style="color: #888888">// Must be less than MAX_SIZE</span>
-   <a id="sieve-c-line-0058"></a>
-   <a id="sieve-c-line-0059"></a>    manipulated_seive(N);
-   <a id="sieve-c-line-0060"></a>
-   <a id="sieve-c-line-0061"></a>    <span style="color: #888888">// print all prime number less then N</span>
-   <a id="sieve-c-line-0062"></a>    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">0</span>; i<span style="color: #000000">&lt;</span>prime.size() <span style="color: #000000">&amp;&amp;</span> prime[i] <span style="color: #000000">&lt;=</span> N ; i<span style="color: #000000">++</span>)
-   <a id="sieve-c-line-0063"></a>        cout <span style="color: #000000">&lt;&lt;</span> prime[i] <span style="color: #000000">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot; &quot;</span>;
-   <a id="sieve-c-line-0064"></a>
-   <a id="sieve-c-line-0065"></a>    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
-   <a id="sieve-c-line-0066"></a>}
+   <a id="sieve-c-line-0030"></a>    <span style="color: #888888">// Fill rest of the entries</span>
+   <a id="sieve-c-line-0031"></a>    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span> i<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">2</span>; i<span style="color: #000000">&lt;</span>N ; i<span style="color: #000000">++</span>)
+   <a id="sieve-c-line-0032"></a>    {
+   <a id="sieve-c-line-0033"></a>        <span style="color: #888888">// If isPrime[i] == True then i is</span>
+   <a id="sieve-c-line-0034"></a>        <span style="color: #888888">// prime number</span>
+   <a id="sieve-c-line-0035"></a>        <span style="color: #008800; font-weight: bold">if</span> (isprime[i])
+   <a id="sieve-c-line-0036"></a>        {
+   <a id="sieve-c-line-0037"></a>            <span style="color: #888888">// put i into prime[] vector</span>
+   <a id="sieve-c-line-0038"></a>            prime.push_back(i);
+   <a id="sieve-c-line-0039"></a>
+   <a id="sieve-c-line-0040"></a>            <span style="color: #888888">// A prime number is its own smallest</span>
+   <a id="sieve-c-line-0041"></a>            <span style="color: #888888">// prime factor</span>
+   <a id="sieve-c-line-0042"></a>            SPF[i] <span style="color: #000000">=</span> i;
+   <a id="sieve-c-line-0043"></a>        }
+   <a id="sieve-c-line-0044"></a>
+   <a id="sieve-c-line-0045"></a>        <span style="color: #888888">// Remove all multiples of i*prime[j] which are</span>
+   <a id="sieve-c-line-0046"></a>        <span style="color: #888888">// not prime by making isPrime[i*prime[j]] = false</span>
+   <a id="sieve-c-line-0047"></a>        <span style="color: #888888">// and put smallest prime factor of i*Prime[j] as prime[j]</span>
+   <a id="sieve-c-line-0048"></a>        <span style="color: #888888">// [ for exp :let i = 5 , j = 0 , prime[j] = 2 [ i*prime[j] = 10 ]</span>
+   <a id="sieve-c-line-0049"></a>        <span style="color: #888888">// so smallest prime factor of &#39;10&#39; is &#39;2&#39; that is prime[j] ]</span>
+   <a id="sieve-c-line-0050"></a>        <span style="color: #888888">// this loop run only one time for number which are not prime</span>
+   <a id="sieve-c-line-0051"></a>        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span> j<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">0</span>;
+   <a id="sieve-c-line-0052"></a>            j <span style="color: #000000">&lt;</span> (<span style="color: #333399; font-weight: bold">int</span>)prime.size() <span style="color: #000000">&amp;&amp;</span>
+   <a id="sieve-c-line-0053"></a>            i<span style="color: #000000">*</span>prime[j] <span style="color: #000000">&lt;</span> N <span style="color: #000000">&amp;&amp;</span> prime[j] <span style="color: #000000">&lt;=</span> SPF[i];
+   <a id="sieve-c-line-0054"></a>            j<span style="color: #000000">++</span>)
+   <a id="sieve-c-line-0055"></a>        {
+   <a id="sieve-c-line-0056"></a>            isprime[i<span style="color: #000000">*</span>prime[j]]<span style="color: #000000">=</span><span style="color: #007020">false</span>;
+   <a id="sieve-c-line-0057"></a>
+   <a id="sieve-c-line-0058"></a>            <span style="color: #888888">// put smallest prime factor of i*prime[j]</span>
+   <a id="sieve-c-line-0059"></a>            SPF[i<span style="color: #000000">*</span>prime[j]] <span style="color: #000000">=</span> prime[j] ;
+   <a id="sieve-c-line-0060"></a>        }
+   <a id="sieve-c-line-0061"></a>    }
+   <a id="sieve-c-line-0062"></a>}
+   <a id="sieve-c-line-0063"></a>
+   <a id="sieve-c-line-0064"></a><span style="color: #888888">// driver program to test above function</span>
+   <a id="sieve-c-line-0065"></a><span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>()
+   <a id="sieve-c-line-0066"></a>{
+   <a id="sieve-c-line-0067"></a>    <span style="color: #333399; font-weight: bold">int</span> N <span style="color: #000000">=</span> <span style="color: #0000DD; font-weight: bold">13</span> ; <span style="color: #888888">// Must be less than MAX_SIZE</span>
+   <a id="sieve-c-line-0068"></a>
+   <a id="sieve-c-line-0069"></a>    manipulated_seive(N);
+   <a id="sieve-c-line-0070"></a>
+   <a id="sieve-c-line-0071"></a>    <span style="color: #888888">// print all prime number less then N</span>
+   <a id="sieve-c-line-0072"></a>    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #000000">=</span><span style="color: #0000DD; font-weight: bold">0</span>; i<span style="color: #000000">&lt;</span>prime.size() <span style="color: #000000">&amp;&amp;</span> prime[i] <span style="color: #000000">&lt;=</span> N ; i<span style="color: #000000">++</span>)
+   <a id="sieve-c-line-0073"></a>        cout <span style="color: #000000">&lt;&lt;</span> prime[i] <span style="color: #000000">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot; &quot;</span>;
+   <a id="sieve-c-line-0074"></a>
+   <a id="sieve-c-line-0075"></a>    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+   <a id="sieve-c-line-0076"></a>}
    </pre></td></tr></table></div>
